@@ -43,19 +43,18 @@ PharmaFlow is a modern pharmacy supplier management platform designed to connect
 - Docker
 - Docker Compose
 
-## Project Structure
+Project Structure
 PharmaFlow/
 ├── frontend/        # Next.js application
 ├── backend/         # NestJS API
 ├── docker-compose.yml
 └── README.md
-
-## Getting Started
+🚀 Getting Started
 1. Clone the repository
 git clone https://github.com/your-username/PharmaFlow.git
 cd PharmaFlow
 2. Configure environment variables
- Backend (backend/.env)
+📦 Backend (backend/.env)
 PORT=3001
 
 DB_HOST=localhost
@@ -79,8 +78,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3001/api/v1
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 🐳 Run with Docker
 docker-compose up --build
-
-## Application URLs
+🔗 Application URLs
 Frontend: http://localhost:3000
 Backend API: http://localhost:3001/api/v1
 💻 Run Locally
@@ -101,8 +99,7 @@ After seeding the database:
 
 Email: admin@pharma.local
 Password: admin123
-
-## Core Modules
+🧩 Core Modules
 👑 Admin
 Manage users
 Approve or reject accounts
@@ -124,8 +121,7 @@ Refresh tokens
 Cookie-based authentication flow
 Role-based route protection
 DTO validation using class-validator
-
-## Development Notes
+🛠️ Development Notes
 Prisma schema: backend/prisma/schema.prisma
 Uploaded files: backend/uploads
 Communication: REST APIs
