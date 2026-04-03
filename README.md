@@ -43,18 +43,22 @@ PharmaFlow is a modern pharmacy supplier management platform designed to connect
 - Docker
 - Docker Compose
 
-Project Structure
+
+## Project Structure
+
 PharmaFlow/
 ├── frontend/        # Next.js application
 ├── backend/         # NestJS API
 ├── docker-compose.yml
 └── README.md
-🚀 Getting Started
+
+## Getting Started
+
 1. Clone the repository
 git clone https://github.com/your-username/PharmaFlow.git
 cd PharmaFlow
 2. Configure environment variables
-📦 Backend (backend/.env)
+backend/.env
 PORT=3001
 
 DB_HOST=localhost
@@ -73,15 +77,19 @@ JWT_REFRESH_SECRET=change-refresh-me
 JWT_REFRESH_TTL=7d
 
 UPLOAD_DIR=uploads
-🌐 Frontend (frontend/.env.local)
+frontend/.env.local
 NEXT_PUBLIC_API_URL=http://localhost:3001/api/v1
 NEXT_PUBLIC_APP_URL=http://localhost:3000
-🐳 Run with Docker
+
+## Run with Docker
 docker-compose up --build
-🔗 Application URLs
+
+Application URLs:
+
 Frontend: http://localhost:3000
 Backend API: http://localhost:3001/api/v1
-💻 Run Locally
+
+## Run Locally
 Backend
 cd backend
 npm install
@@ -93,36 +101,39 @@ Frontend
 cd frontend
 npm install
 npm run dev
-🔐 Default Admin Account
 
+## Default Admin Account
 After seeding the database:
 
 Email: admin@pharma.local
 Password: admin123
-🧩 Core Modules
-👑 Admin
+
+## Core Modules
+Admin
 Manage users
 Approve or reject accounts
 Manage subscriptions and payments
 Monitor platform activity
-🏭 Supplier
+Supplier
 Manage company profile
 Upload product listings
 Publish promotional offers
 Track subscription status
-💊 Pharmacist
+Pharmacist
 Browse suppliers
 Search supplier catalogs
 View supplier profiles
 Submit ratings and reviews
-🔒 Security
+
+## Security
 JWT access tokens
 Refresh tokens
 Cookie-based authentication flow
 Role-based route protection
 DTO validation using class-validator
-🛠️ Development Notes
-Prisma schema: backend/prisma/schema.prisma
-Uploaded files: backend/uploads
-Communication: REST APIs
-Architecture: scalable & deployment-ready
+
+## Development Notes
+Prisma schema is located in backend/prisma/schema.prisma
+Uploaded files are stored in backend/uploads
+Frontend communicates with backend through REST APIs
+The project is structured for scalability and deployment readiness
