@@ -1,31 +1,56 @@
 # PharmaFlow
 
-[![CI](https://github.com/imenei/PharmaFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/imenei/PharmaFlow/actions/workflows/ci.yml)
-![Next.js](https://img.shields.io/badge/Next.js-15-black)
-![NestJS](https://img.shields.io/badge/NestJS-11-EA2845)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
-![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED)
+PharmaFlow is a modern pharmacy supply platform that connects pharmacists, suppliers, and administrators in one scalable web application. It streamlines supplier discovery, catalog sharing, offer management, subscriptions, approvals, and role-based dashboards through a clean full-stack architecture.
 
-PharmaFlow is a modern pharmacy supplier management platform that connects pharmacists, suppliers, and administrators through a scalable full-stack architecture.
+## Features
+
+- Role-based authentication for admins, pharmacists, and suppliers
+- Admin approval workflow for newly registered users
+- Supplier dashboard for profile, listings, offers, and subscriptions
+- Pharmacist dashboard for supplier discovery, catalog search, and ratings
+- Product listing and PDF catalog management
+- Notification and subscription management
+- JWT authentication with refresh tokens
+- PostgreSQL database with Prisma ORM
+- Dockerized local development environment
+
+## Tech Stack
+
+### Frontend
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- TanStack Query
+
+### Backend
+- NestJS
+- REST API
+- Prisma ORM
+- class-validator
+
+### Database
+- PostgreSQL
+
+### DevOps
+- Docker
+- Docker Compose
 
 ## Project Structure
 
 ```bash
 PharmaFlow/
-├── frontend/              # Next.js application
-├── backend/               # NestJS API
+├── frontend/        # Next.js application
+├── backend/         # NestJS API
 ├── docker-compose.yml
 └── README.md
 Getting Started
 1. Clone the repository
-git clone https://github.com/imenei/PharmaFlow.git
+git clone https://github.com/your-username/PharmaFlow.git
 cd PharmaFlow
 2. Configure environment variables
-Backend
-Create backend/.env:
+Create the following files:
 
+backend/.env
 PORT=3001
 
 DB_HOST=localhost
@@ -44,14 +69,13 @@ JWT_REFRESH_SECRET=change-refresh-me
 JWT_REFRESH_TTL=7d
 
 UPLOAD_DIR=uploads
-Frontend
-Create frontend/.env.local:
-
+frontend/.env.local
 NEXT_PUBLIC_API_URL=http://localhost:3001/api/v1
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 Run with Docker
 docker-compose up --build
-Application URLs
+Application URLs:
+
 Frontend: http://localhost:3000
 Backend API: http://localhost:3001/api/v1
 Run Locally
@@ -67,16 +91,16 @@ cd frontend
 npm install
 npm run dev
 Default Admin Account
-After seeding the database:
+After running the seed:
 
 Email: admin@pharma.local
 Password: admin123
-Core Modules
+Main Modules
 Admin
 Manage users
 Approve or reject accounts
 Manage subscriptions and payments
-Monitor platform activity
+Review platform activity
 Supplier
 Manage company profile
 Upload product listings
@@ -84,17 +108,28 @@ Publish promotional offers
 Track subscription status
 Pharmacist
 Browse suppliers
-Search supplier catalogs
+Search catalog listings
 View supplier profiles
 Submit ratings and reviews
+API Overview
+Example endpoints:
+
+POST   /api/v1/auth/login
+POST   /api/v1/auth/register
+GET    /api/v1/admin/users
+GET    /api/v1/pharmacists/suppliers
+POST   /api/v1/pharmacists/ratings
+GET    /api/v1/supplier/dashboard
+POST   /api/v1/supplier/listings
+POST   /api/v1/supplier/offers
 Security
 JWT access tokens
 Refresh tokens
-Cookie-based authentication flow
+Secure cookie-based auth flow
 Role-based route protection
-DTO validation using class-validator
+DTO validation with class-validator
 Development Notes
-Prisma schema: backend/prisma/schema.prisma
-Uploaded files: backend/uploads
-Communication: REST APIs
-Architecture: scalable and deployment-ready
+Prisma schema lives in backend/prisma/schema.prisma
+Uploaded files are stored in backend/uploads
+Frontend communicates with backend through REST APIs
+The app is structured for modular growth and production deployment
