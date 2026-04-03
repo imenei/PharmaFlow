@@ -1,0 +1,565 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 232, 245, 233; /* #E8F5E9 */
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Styles personnalisés pour les couleurs Elsaidaliya */
+.bg-elsaidaliya {
+  background-color: #E8F5E9;
+}
+
+.text-elsaidaliya-green {
+  color: #2E7D32;
+}
+
+.bg-elsaidaliya-green {
+  background-color: #2E7D32;
+}
+
+.hover\:bg-elsaidaliya-dark-green:hover {
+  background-color: #1B5E20;
+}
+
+.hover\:text-elsaidaliya-dark-green:hover {
+  color: #1B5E20;
+}
+/* Styles globaux pour tous les composants */
+.dashboard-stats,
+.listing-upload-form,
+.offer-form,
+.subscription-panel,
+.profile-form {
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+h2 {
+  color: #2E7D32;
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h3 {
+  color: #2E7D32;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Styles pour DashboardStats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #E8F5E9;
+  border-radius: 8px;
+}
+
+.stat-icon {
+  font-size: 32px;
+  margin-right: 16px;
+}
+
+.stat-content h3 {
+  margin: 0;
+  font-size: 28px;
+  color: #1B5E20;
+}
+
+.stat-content p {
+  margin: 4px 0 0;
+  color: #388E3C;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.chart-card {
+  padding: 20px;
+  background-color: #F1F8E9;
+  border-radius: 8px;
+}
+
+/* Styles pour ListingUploadForm */
+.upload-info {
+  color: #616161;
+  margin-bottom: 16px;
+}
+
+.file-upload-area {
+  margin-bottom: 16px;
+}
+
+.file-upload-area input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px dashed #4CAF50;
+  border-radius: 8px;
+  background-color: #F1F8E9;
+}
+
+.file-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-top: 8px;
+  background-color: #E8F5E9;
+  border-radius: 6px;
+}
+
+.file-preview button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.history-table {
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-header, .table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 0.5fr;
+  padding: 12px 16px;
+  align-items: center;
+}
+
+.table-header {
+  background-color: #E8F5E9;
+  font-weight: 600;
+}
+
+.table-row:nth-child(even) {
+  background-color: #F9F9F9;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.approuvé {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status.en-attente {
+  background-color: #FFF8E1;
+  color: #F57C00;
+}
+
+.status.rejeté {
+  background-color: #FFEBEE;
+  color: #D32F2F;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.delete-button {
+  color: #D32F2F;
+}
+
+/* Styles pour OfferForm */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #BDBDBD;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.image-preview {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 6px;
+}
+
+.image-preview button {
+  display: block;
+  margin: 8px auto 0;
+  background: none;
+  border: none;
+  color: #D32F2F;
+  cursor: pointer;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.offer-card {
+  padding: 16px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+}
+
+.offer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-badge.inactive {
+  background-color: #F5F5F5;
+  color: #9E9E9E;
+}
+
+.offer-description {
+  color: #616161;
+  margin-bottom: 12px;
+}
+
+.offer-dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #757575;
+  margin-bottom: 12px;
+}
+
+.offer-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.status-button {
+  padding: 6px 12px;
+  border: 1px solid #BDBDBD;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+
+.status-button.active {
+  color: #D32F2F;
+}
+
+.status-button.inactive {
+  color: #2E7D32;
+}
+
+/* Styles pour SubscriptionPanel */
+.current-subscription {
+  margin-bottom: 32px;
+}
+
+.subscription-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #E8F5E9;
+  border-radius: 8px;
+}
+
+.section-description {
+  color: #616161;
+  margin-bottom: 24px;
+}
+
+.plans-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.plan-card {
+  position: relative;
+  padding: 24px;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.plan-card:hover {
+  border-color: #4CAF50;
+}
+
+.plan-card.recommended {
+  border-color: #FFC107;
+}
+
+.plan-card.selected {
+  border-color: #4CAF50;
+  background-color: #F1F8E9;
+}
+
+.recommended-badge {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  padding: 4px 12px;
+  background-color: #FFC107;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.plan-card h4 {
+  margin: 0 0 16px;
+  color: #2E7D32;
+}
+
+.price {
+  margin-bottom: 20px;
+}
+
+.amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1B5E20;
+}
+
+.duration {
+  color: #757575;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.features li {
+  padding: 6px 0;
+  color: #616161;
+}
+
+.select-button {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #4CAF50;
+  border-radius: 6px;
+  background: white;
+  color: #4CAF50;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.select-button.selected {
+  background: #4CAF50;
+  color: white;
+}
+
+.payment-info {
+  padding: 12px;
+  background-color: #FFF8E1;
+  border-left: 4px solid #FFA000;
+  margin-bottom: 24px;
+}
+
+.bank-details {
+  margin-bottom: 24px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+}
+
+.details-grid div {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-grid span {
+  font-size: 12px;
+  color: #757575;
+}
+
+.details-grid strong {
+  margin-top: 4px;
+  color: #212121;
+}
+
+/* Styles pour ProfileForm */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E8F5E9;
+  border: 1px dashed #4CAF50;
+}
+
+.logo-preview img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.logo-placeholder {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2E7D32;
+}
+
+.file-upload-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#logo-upload {
+  display: none;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.profile-form-fields {
+  max-width: 800px;
+}
+
+/* Boutons communs */
+.primary-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-button:hover {
+  background-color: #388E3C;
+}
+
+.primary-button:disabled {
+  background-color: #A5D6A7;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  padding: 10px 20px;
+  background-color: white;
+  color: #4CAF50;
+  border: 1px solid #4CAF50;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.secondary-button:hover {
+  background-color: #E8F5E9;
+}

@@ -1,0 +1,252 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  PHARMACIST
+  SUPPLIER
+}
+
+enum UserStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum MessageStatus {
+  NEW
+  READ
+  REPLIED
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum OrderStatus {
+  DRAFT
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+  FULFILLED
+}
+
+model User {
+  id                String                @id @default(cuid())
+  email             String                @unique
+  passwordHash      String
+  role              UserRole
+  status            UserStatus            @default(PENDING)
+  companyName       String?
+  address           String?
+  wilaya            String?
+  phone             String?
+  description       String?
+  avatarUrl         String?
+  isActive          Boolean               @default(true)
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  listings          Listing[]
+  offers            Offer[]
+  notifications     Notification[]
+  subscriptionPays  SubscriptionPayment[]
+  refreshTokens     RefreshToken[]
+  ratingsReceived   Rating[]              @relation("SupplierRatings")
+  ratingsAuthored   Rating[]              @relation("PharmacistRatings")
+  supplierViews     SupplierProfileView[]
+  pharmacistOrders  Order[]               @relation("PharmacistOrders")
+  supplierOrders    Order[]               @relation("SupplierOrders")
+
+  @@index([role, status, createdAt])
+  @@index([wilaya, role, status])
+}
+
+
+model Wilaya {
+  id   Int    @id @default(autoincrement())
+  code Int    @unique
+  nom  String
+}
+
+model Listing {
+  id            String           @id @default(cuid())
+  supplierId    String
+  supplier      User             @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  title         String
+  description   String?
+  fileUrl       String
+  extractedText String?
+  views         Int              @default(0)
+  downloads     Int              @default(0)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  products      ListingProduct[]
+  orders        Order[]
+
+  @@index([supplierId, createdAt])
+  @@index([createdAt])
+}
+
+model ListingProduct {
+  id          String   @id @default(cuid())
+  listingId   String
+  listing     Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  productName String
+  price       Float?
+  quantity    Int?
+
+  @@index([listingId])
+  @@index([productName])
+}
+
+model Offer {
+  id          String   @id @default(cuid())
+  supplierId  String
+  supplier    User     @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  imageUrl    String?
+  expiresAt   DateTime
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  viewEvents  OfferView[]
+
+  @@index([supplierId, createdAt])
+  @@index([expiresAt])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, isRead, createdAt])
+}
+
+model ContactMessage {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  status    MessageStatus @default(NEW)
+  createdAt DateTime      @default(now())
+
+  @@index([status, createdAt])
+}
+
+model SubscriptionPlan {
+  id           String                @id @default(cuid())
+  name         String                @unique
+  price        Float
+  durationDays Int
+  features     String[]
+  createdAt    DateTime              @default(now())
+  payments     SubscriptionPayment[]
+}
+
+model SubscriptionPayment {
+  id             String          @id @default(cuid())
+  userId         String
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriptionId String
+  subscription   SubscriptionPlan @relation(fields: [subscriptionId], references: [id])
+  proofUrl       String
+  status         PaymentStatus   @default(PENDING)
+  subscriptionStart DateTime?
+  subscriptionEnd DateTime?
+  isActive       Boolean         @default(false)
+  createdAt      DateTime        @default(now())
+
+  @@index([userId, status, createdAt])
+  @@index([subscriptionEnd, isActive])
+}
+
+model Rating {
+  id            String   @id @default(cuid())
+  supplierId    String
+  supplier      User     @relation("SupplierRatings", fields: [supplierId], references: [id], onDelete: Cascade)
+  pharmacistId  String
+  pharmacist    User     @relation("PharmacistRatings", fields: [pharmacistId], references: [id], onDelete: Cascade)
+  score         Int
+  comment       String?
+  createdAt     DateTime @default(now())
+
+  @@unique([supplierId, pharmacistId])
+  @@index([supplierId, createdAt])
+}
+
+model SupplierProfileView {
+  id           String   @id @default(cuid())
+  supplierId   String
+  supplier     User     @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  viewerUserId String?
+  createdAt    DateTime @default(now())
+
+  @@index([supplierId, createdAt])
+}
+
+model OfferView {
+  id           String   @id @default(cuid())
+  offerId      String
+  offer        Offer    @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  viewerUserId String?
+  createdAt    DateTime @default(now())
+
+  @@index([offerId, createdAt])
+}
+
+model RefreshToken {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash   String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  revokedAt   DateTime?
+
+  @@index([userId, expiresAt])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  form        String?
+  category    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([name])
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  pharmacistId   String
+  pharmacist     User        @relation("PharmacistOrders", fields: [pharmacistId], references: [id], onDelete: Cascade)
+  supplierId     String
+  supplier       User        @relation("SupplierOrders", fields: [supplierId], references: [id], onDelete: Cascade)
+  listingId      String?
+  listing        Listing?    @relation(fields: [listingId], references: [id], onDelete: SetNull)
+  status         OrderStatus @default(DRAFT)
+  notes          String?
+  totalItems     Int         @default(0)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([pharmacistId, status, createdAt])
+  @@index([supplierId, status, createdAt])
+}
