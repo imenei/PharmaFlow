@@ -1,5 +1,6 @@
 # PharmaFlow
 
+[![CI](https://github.com/imenei/PharmaFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/imenei/PharmaFlow/actions/workflows/ci.yml)
 ![Next.js](https://img.shields.io/badge/Next.js-15-black)
 ![NestJS](https://img.shields.io/badge/NestJS-11-EA2845)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
