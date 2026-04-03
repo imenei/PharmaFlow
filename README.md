@@ -116,17 +116,8 @@ Browse suppliers
 Search supplier catalogs
 View supplier profiles
 Submit ratings and reviews
-Example API Endpoints
-POST   /api/v1/auth/login
-POST   /api/v1/auth/register
-POST   /api/v1/auth/refresh
-GET    /api/v1/admin/users
-GET    /api/v1/pharmacists/suppliers
-POST   /api/v1/pharmacists/ratings
-GET    /api/v1/supplier/dashboard
-POST   /api/v1/supplier/listings
-POST   /api/v1/supplier/offers
-Security
+
+## Security
 JWT access tokens
 Refresh tokens
 Cookie-based authentication flow
@@ -137,12 +128,6 @@ Prisma schema is located in backend/prisma/schema.prisma
 Uploaded files are stored in backend/uploads
 Frontend communicates with backend through REST APIs
 The project is structured for scalability and deployment readiness
-License
-This project is licensed under the MIT License.
 
 
-**Si tu veux encore mieux**
-Je peux aussi te donner :
-- une version avec badges cliquables
-- une version avec badge `license`, `stars`, `last commit`
-- un workflow GitHub Actions pour avoir un vrai badge `build passing` automatiquement
+
