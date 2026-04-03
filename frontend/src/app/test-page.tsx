@@ -1,30 +1,10 @@
-'use client'
-
-import { useEffect } from 'react'
-import { createClient } from '@/lib/supabase/client'
-
-export default function TestConnection() {
-  // ✅ AJOUT: Créer le client Supabase
-  const supabase = createClient()
-
-  useEffect(() => {
-    const testConnection = async () => {
-      const { data, error } = await supabase.from('profiles').select('*').limit(1)
-      
-      if (error) {
-        console.error('Erreur de connexion:', error)
-      } else {
-        console.log('Connexion réussie!', data)
-      }
-    }
-    
-    testConnection()
-  }, [])
-
+export default function StandaloneTestPage() {
   return (
-    <div>
-      <h1>Test de connexion Supabase</h1>
-      <p>Vérifie la console du navigateur pour les résultats.</p>
+    <div className="p-8">
+      <h1 className="text-2xl font-bold mb-4">Legacy Test Page</h1>
+      <p className="text-gray-600">
+        Cette page de test legacy a ete retiree du flux principal.
+      </p>
     </div>
   )
 }
